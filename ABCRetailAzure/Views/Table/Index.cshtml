@@ -1,0 +1,87 @@
+﻿@model List<Azure.Data.Tables.TableEntity>
+
+@{
+    ViewData["Title"] = "Customer and Product Storage";
+}
+
+<div class="container">
+    <h1>ABC Retail - Customer & Product Storage</h1>
+
+    <hr />
+
+    <h2>Add Customer/Product</h2>
+
+    <form method="post" action="/Table/Add">
+
+        <div class="mb-3">
+            <label>Customer Name</label>
+            <input type="text"
+                   name="customerName"
+                   class="form-control"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email"
+                   name="email"
+                   class="form-control"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label>Product</label>
+            <input type="text"
+                   name="product"
+                   class="form-control"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label>Price</label>
+            <input type="number"
+                   name="price"
+                   step="0.01"
+                   class="form-control"
+                   required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Add Record
+        </button>
+
+    </form>
+
+    <hr />
+
+    <h2>Stored Records</h2>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Product</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var record in Model)
+            {
+                <tr>
+                    <td>@record.GetString("CustomerName")</td>
+                    <td>@record.GetString("Email")</td>
+                    <td>@record.GetString("Product")</td>
+                    <td>
+                        R @(Convert.ToDecimal(record["Price"]).ToString("N2"))
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>

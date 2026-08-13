@@ -1,0 +1,72 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "System Logs";
+}
+
+<div class="container">
+
+    <h1>ABC Retail - System Logs</h1>
+
+    <hr />
+
+    <h2>Upload Log File</h2>
+
+    <form method="post"
+          action="/File/Upload"
+          enctype="multipart/form-data">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Choose Log File
+            </label>
+
+            <input type="file"
+                   name="logFile"
+                   class="form-control"
+                   accept=".txt,.log"
+                   required />
+
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary">
+            Upload Log File
+        </button>
+
+    </form>
+
+    <hr />
+
+    <h2>Stored Log Files</h2>
+
+    @if (Model.Count == 0)
+    {
+        <p>No log files have been uploaded yet.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var file in Model)
+                {
+                    <tr>
+                        <td>@file</td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    }
+
+</div>

@@ -1,0 +1,72 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "Product Images";
+}
+
+<div class="container">
+
+    <h1>ABC Retail - Product Images</h1>
+
+    <hr />
+
+    <h2>Upload Product Image</h2>
+
+    <form method="post"
+          action="/Blob/Upload"
+          enctype="multipart/form-data">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Choose Product Image
+            </label>
+
+            <input type="file"
+                   name="image"
+                   class="form-control"
+                   accept="image/*"
+                   required />
+
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary">
+            Upload Image
+        </button>
+
+    </form>
+
+    <hr />
+
+    <h2>Uploaded Product Images</h2>
+
+    <div class="row">
+
+        @foreach (var blob in Model)
+        {
+            <div class="col-md-4 mb-4">
+
+                <div class="card">
+
+                    <img src="/Blob/Display?name=@Uri.EscapeDataString(blob)"
+                         class="card-img-top"
+                         style="height: 200px; object-fit: contain;"
+                         alt="@blob" />
+
+                    <div class="card-body">
+
+                        <p class="card-text">
+                            @blob
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>

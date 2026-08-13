@@ -1,0 +1,85 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "Order Processing";
+}
+
+<div class="container">
+
+    <h1>ABC Retail - Order Processing</h1>
+
+    <hr />
+
+    <h2>Add Order to Queue</h2>
+
+    <form method="post"
+          action="/Queue/AddOrder">
+
+        <div class="mb-3">
+            <label class="form-label">Order Number</label>
+
+            <input type="text"
+                   name="orderNumber"
+                   class="form-control"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Product</label>
+
+            <input type="text"
+                   name="product"
+                   class="form-control"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Quantity</label>
+
+            <input type="number"
+                   name="quantity"
+                   class="form-control"
+                   min="1"
+                   required />
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary">
+            Add Order to Queue
+        </button>
+
+    </form>
+
+    <hr />
+
+    <h2>Stored Queue Messages</h2>
+
+    @if (Model.Count == 0)
+    {
+        <p>No queue messages found.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>Order Processing Message</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var message in Model)
+                {
+                    <tr>
+                        <td>@message</td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    }
+
+</div>
