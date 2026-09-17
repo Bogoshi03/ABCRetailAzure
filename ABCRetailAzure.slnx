@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="ABCRetailAzure/ABCRetailAzure.csproj" />
+  <Project Path="ABCRetailFunctions/ABCRetailFunctions.csproj" Id="53e7630e-d950-4644-b435-275f8c2ba781" />
 </Solution>
